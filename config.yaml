@@ -1,0 +1,11 @@
+baseURL: http://dparo.github.io
+languageCode: en-us
+title: dparo's website
+theme: PaperMod
+publishdir: ./public/
+
+params:
+  ananke_socials:
+    - name: github
+      url: https://github.com/dparo
+      label: GitHub Account
