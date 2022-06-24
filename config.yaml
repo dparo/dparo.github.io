@@ -4,6 +4,12 @@ title: dparo's website
 theme: PaperMod
 publishdir: ./public/
 
+menu:
+  main:
+    - identifier: master-thesis
+      name: Master Thesis
+      url: documents/master-thesis.html
+
 params:
   ananke_socials:
     - name: github
