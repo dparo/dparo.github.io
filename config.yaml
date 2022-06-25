@@ -6,8 +6,8 @@ publishdir: ./public/
 
 menu:
   main:
-    - identifier: master-thesis
-      name: Master Thesis
+    - identifier: ms-degree-dissertation
+      name: Dissertation
       url: documents/master-thesis.html
 
 params:
