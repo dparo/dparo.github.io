@@ -8,7 +8,7 @@ menu:
   main:
     - identifier: ms-degree-dissertation
       name: Dissertation
-      url: documents/master-thesis.html
+      url: documents/MSc_Paro_Davide.pdf
 
 params:
   ananke_socials:
