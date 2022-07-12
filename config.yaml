@@ -9,6 +9,9 @@ menu:
     - identifier: ms-degree-dissertation
       name: Dissertation
       url: documents/MSc_Paro_Davide.pdf
+    - identifier: msc-presentation
+      name: MSc presentation
+      url: documents/msc-presentation.pdf
 
 params:
   ananke_socials:
