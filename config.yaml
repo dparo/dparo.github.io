@@ -2,7 +2,7 @@ baseURL: http://dparo.github.io
 languageCode: en-us
 title: dparo's website
 theme: PaperMod
-publishdir: ./public/
+publishdir: ./dist/
 
 menu:
   main:
