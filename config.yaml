@@ -18,3 +18,5 @@ params:
     - name: github
       url: https://github.com/dparo
       label: GitHub Account
+
+  ShowCodeCopyButtons: true
