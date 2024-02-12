@@ -1,17 +1,17 @@
 baseURL: http://dparo.github.io
 languageCode: en-us
 title: dparo's website
-theme: PaperMod
+theme: ananke
 publishdir: ./dist/
 
 menu:
   main:
     - identifier: ms-degree-dissertation
       name: Dissertation
-      url: documents/MSc_Paro_Davide.pdf
+      url: /documents/msc.pdf
     - identifier: msc-presentation
       name: MSc presentation
-      url: documents/msc-presentation.pdf
+      url: /documents/msc-presentation.pdf
 
 params:
   ananke_socials:

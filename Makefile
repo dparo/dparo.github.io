@@ -4,7 +4,7 @@
 
 download_master_thesis_document:
 	wget -N 'https://github.com/dparo/master-thesis.tex/releases/latest/download/Paro_Davide.pdf' \
-		-O static/documents/MSc_Paro_Davide.pdf
+		-O static/documents/msc.pdf
 
 download_msc_presentation_document:
 	wget -N 'https://github.com/dparo/msc-presentation/releases/latest/download/Paro_Davide.pdf' \
