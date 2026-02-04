@@ -1,0 +1,71 @@
+{{- /*
+Renders a pagination nav for the current list page.
+Overrides Hugo's embedded pagination partial.
+
+Layout: « prev   1  …  3  4  [5]  6  7  …  11   next »
+
+@example: {{ partial "pagination.html" . }}
+*/}}
+
+{{- $paginator := .Paginator }}
+{{- if gt $paginator.TotalPages 1 }}
+<nav class="pagination" aria-label="Page navigation">
+  <ul>
+    {{- /* Previous */}}
+    <li>
+      {{- if $paginator.HasPrev }}
+        <a href="{{ $paginator.Prev.URL }}" aria-label="Previous page">&laquo;</a>
+      {{- else }}
+        <span class="disabled" aria-disabled="true">&laquo;</span>
+      {{- end }}
+    </li>
+
+    {{- $current := $paginator.PageNumber }}
+    {{- $total   := $paginator.TotalPages }}
+    {{- $window  := 2 }}
+    {{- /* Track whether we have already emitted each ellipsis */}}
+    {{- $leftDone  := false }}
+    {{- $rightDone := false }}
+
+    {{- range $pager := $paginator.Pagers }}
+      {{- $n := $pager.PageNumber }}
+
+      {{- /* Decide: is this page visible? Always show first, last, and the window around current */}}
+      {{- $visible := or (eq $n 1) (eq $n $total) (and (ge $n (sub $current $window)) (le $n (add $current $window))) }}
+
+      {{- if $visible }}
+        {{- /* Before printing this page, check if we need a left ellipsis:
+               conditions — we haven't printed it yet, this isn't page 1,
+               and the previous page (n-1) was NOT visible (i.e. not page 1 and not in window) */}}
+        {{- if and (not $leftDone) (gt $n 1) (lt (sub $n 1) (sub $current $window)) }}
+          <li><span class="ellipsis">&hellip;</span></li>
+          {{- $leftDone = true }}
+        {{- end }}
+
+        {{- if eq $n $current }}
+          <li><span class="current" aria-current="page">{{ $n }}</span></li>
+        {{- else }}
+          <li><a href="{{ $pager.URL }}">{{ $n }}</a></li>
+        {{- end }}
+
+        {{- /* After printing this page, check if we need a right ellipsis:
+               conditions — we haven't printed it yet, this isn't the last page,
+               and the next page (n+1) is NOT visible (i.e. not last and not in window) */}}
+        {{- if and (not $rightDone) (lt $n $total) (gt (add $n 1) (add $current $window)) (ne (add $n 1) $total) }}
+          <li><span class="ellipsis">&hellip;</span></li>
+          {{- $rightDone = true }}
+        {{- end }}
+      {{- end }}
+    {{- end }}
+
+    {{- /* Next */}}
+    <li>
+      {{- if $paginator.HasNext }}
+        <a href="{{ $paginator.Next.URL }}" aria-label="Next page">&raquo;</a>
+      {{- else }}
+        <span class="disabled" aria-disabled="true">&raquo;</span>
+      {{- end }}
+    </li>
+  </ul>
+</nav>
+{{- end }}

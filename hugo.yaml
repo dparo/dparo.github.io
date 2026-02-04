@@ -3,6 +3,8 @@ languageCode: en-us
 title: dparo's website
 theme: personal
 publishdir: ./dist/
+pagination:
+  pagerSize: 20
 
 menu:
   main:
