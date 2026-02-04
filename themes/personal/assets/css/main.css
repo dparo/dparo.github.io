@@ -330,19 +330,28 @@ p {
 }
 
 /* ── Single-post header: date + read time ── */
-.post-meta {
+.post-meta,
+.card-meta {
   display: flex;
-  align-items: center;
-  gap: 1rem;
+  align-items: baseline;   /* optical baseline alignment across mixed sizes */
+  gap: 0;                  /* spacing handled by the separator pseudo-element */
+  margin-bottom: 0;        /* each context sets its own bottom margin below */
+}
+
+.post-meta {
   margin-bottom: 1.25rem;
 }
 
-.post-meta time {
+.post-meta time,
+.card-meta time {
+  display: inline;         /* override the bare <time> block default */
   font-size: 0.85rem;
+  line-height: 1.6;
   color: var(--overlay0);
+  margin: 0;
 }
 
-/* Fallback: bare <time> on pages that don't use .post-meta */
+/* Fallback: bare <time> on pages that don't use .post-meta / .card-meta */
 time {
   display: block;
   font-size: 0.85rem;
@@ -353,11 +362,21 @@ time {
 /* ── Read-time badge ── */
 .read-time {
   font-size: 0.8rem;
+  line-height: 1.6;       /* match date line-height so baselines align */
   color: var(--overlay0);
   background-color: var(--surface0);
-  padding: 0.15rem 0.55rem;
+  padding: 0.18rem 0.55rem;
   border-radius: 999px;
   white-space: nowrap;
+}
+
+/* Dot separator between date and read-time */
+.read-time::before {
+  content: '·';
+  margin-right: 0.75rem;
+  margin-left:  0.75rem;
+  background: none;        /* cancel any inherited background */
+  padding: 0;
 }
 
 /* ─── Links ──────────────────────────────────────────────────── */
@@ -440,17 +459,11 @@ section p {
   color: var(--text);
 }
 
-/* ─── Post-card meta row (date + read time) ──────────────────── */
+/* ─── Post-card meta row ─────────────────────────────────────── */
+/* shared flex + baseline rules live with .post-meta above;
+   only the card-specific bottom margin is set here */
 .card-meta {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
   margin-bottom: 0.5rem;
-}
-
-.card-meta time {
-  font-size: 0.85rem;
-  color: var(--overlay0);
 }
 
 /* ─── Giscus comments wrapper ────────────────────────────────── */
