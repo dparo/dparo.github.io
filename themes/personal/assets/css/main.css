@@ -270,7 +270,193 @@ section time {
   min-width: 1.5rem;
 }
 
-/* ─── Footer ─────────────────────────────────────────────────── */
+/* ─── Code blocks ────────────────────────────────────────────── */
+
+/* Outer wrapper — position: relative so the copy button can anchor */
+.highlight {
+  position: relative;
+  margin: 1.25rem 0;
+  border-radius: 8px;
+  border: 1px solid var(--surface0);
+  overflow: hidden;
+}
+
+/* Chroma container — the dark background */
+.chroma {
+  background-color: var(--mantle);
+  color: var(--text);
+  font-size: 0.88rem;
+  line-height: 1.6;
+  overflow-x: auto;
+}
+
+/* The line-number / code table — collapse borders, no extra space */
+.lntable {
+  border-spacing: 0;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Both columns share the same baseline styles */
+.lntd pre {
+  margin: 0;
+  padding: 0.75rem 0;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+/* ── Line-number gutter ── */
+.lntd:first-child {
+  background-color: var(--surface0);
+  border-right: 1px solid var(--surface1);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.lntd:first-child pre {
+  padding-left: 0.75rem;
+  padding-right: 0.5rem;
+  text-align: right;
+}
+
+/* Individual line-number spans — already user-select:none from Hugo,
+   but we re-assert and set the colour */
+.lnt {
+  color: var(--overlay0);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* ── Code column ── */
+.lntd:last-child pre {
+  padding-left: 1rem;
+  /* right padding gives breathing room from the copy button */
+  padding-right: 2.75rem;
+}
+
+/* ── Copy button ── */
+.copy-btn {
+  position: absolute;
+  top: 0.4rem;
+  right: 0.4rem;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid var(--surface1);
+  border-radius: 5px;
+  background-color: var(--surface0);
+  color: var(--subtext1);
+  cursor: pointer;
+  font-size: 0.85rem;
+  padding: 0;
+  transition: background-color 0.15s, color 0.15s, border-color 0.15s;
+  /* keep the button visually on top of scrolling code */
+  opacity: 0.7;
+}
+
+.copy-btn:hover {
+  background-color: var(--surface1);
+  color: var(--text);
+  border-color: var(--overlay0);
+  opacity: 1;
+}
+
+/* "Copied!" flash state */
+.copy-btn.copied {
+  background-color: var(--green);
+  color: var(--crust);
+  border-color: var(--green);
+  opacity: 1;
+}
+
+/* ── Catppuccin Mocha syntax token colours ── */
+/* Base / plain text */
+.chroma .n  { color: var(--text); }
+.chroma .p  { color: var(--text); }
+.chroma .cl { color: var(--text); }
+
+/* Keywords */
+.chroma .k  { color: var(--red);      font-weight: 600; }
+.chroma .kc { color: var(--red);      font-weight: 600; }
+.chroma .kd { color: var(--red);      font-weight: 600; }
+.chroma .kn { color: var(--red);      font-weight: 600; }
+.chroma .kp { color: var(--red);      font-weight: 600; }
+.chroma .kr { color: var(--red);      font-weight: 600; }
+.chroma .kt { color: var(--peach);    }
+
+/* Names / identifiers */
+.chroma .na { color: var(--blue);     }
+.chroma .nb { color: var(--lavender); }
+.chroma .nc { color: var(--green);    }
+.chroma .nd { color: var(--blue);     }
+.chroma .ne { color: var(--blue);     }
+.chroma .nf { color: var(--blue);     }
+.chroma .fm { color: var(--blue);     }
+.chroma .nx { color: var(--text);     }
+.chroma .nt { color: var(--red);      }
+.chroma .no { color: var(--peach);    }
+
+/* Literals — strings */
+.chroma .s  { color: var(--green);    }
+.chroma .sa { color: var(--green);    }
+.chroma .sb { color: var(--green);    }
+.chroma .sc { color: var(--green);    }
+.chroma .sd { color: var(--green);    font-style: italic; }
+.chroma .s1 { color: var(--green);    }
+.chroma .s2 { color: var(--green);    }
+.chroma .se { color: var(--peach);    }
+.chroma .sh { color: var(--green);    }
+.chroma .si { color: var(--green);    }
+.chroma .sx { color: var(--green);    }
+.chroma .sr { color: var(--pink);     }
+.chroma .ss { color: var(--green);    }
+.chroma .dl { color: var(--green);    }
+.chroma .l  { color: var(--peach);    }
+.chroma .ld { color: var(--green);    }
+
+/* Literals — numbers */
+.chroma .m  { color: var(--peach);    }
+.chroma .mb { color: var(--peach);    }
+.chroma .mf { color: var(--peach);    }
+.chroma .mh { color: var(--peach);    }
+.chroma .mi { color: var(--peach);    }
+.chroma .il { color: var(--peach);    }
+.chroma .mo { color: var(--peach);    }
+
+/* Operators */
+.chroma .o  { color: var(--red);      }
+.chroma .ow { color: var(--red);      font-weight: 600; }
+
+/* Comments */
+.chroma .c  { color: var(--overlay0); font-style: italic; }
+.chroma .ch { color: var(--overlay0); font-style: italic; }
+.chroma .cm { color: var(--overlay0); font-style: italic; }
+.chroma .c1 { color: var(--overlay0); font-style: italic; }
+.chroma .cs { color: var(--overlay0); font-style: italic; }
+.chroma .cp { color: var(--overlay0); font-style: italic; }
+.chroma .cpf{ color: var(--overlay0); font-style: italic; }
+
+/* Preprocessor / includes (e.g. C #include) — treat like comments but distinct */
+.chroma .cp { color: var(--pink);     font-style: normal; }
+
+/* Generics (diffs, etc.) */
+.chroma .gd { color: var(--red);      }
+.chroma .gi { color: var(--green);    }
+.chroma .ge { font-style: italic;     }
+.chroma .gs { font-weight: bold;      }
+.chroma .gu { color: var(--overlay0); }
+
+/* Error token */
+.chroma .err { color: var(--red); background-color: var(--surface0); }
+
+/* Line highlight (hl_lines) */
+.chroma .hl { background-color: var(--surface0); }
+
+/* ── Footer ─────────────────────────────────────────────────── */
 footer {
   width: 100%;
   background-color: var(--mantle);

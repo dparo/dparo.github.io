@@ -15,6 +15,13 @@ menu:
       name: MSc presentation
       url: /documents/msc-presentation.pdf
 
+markup:
+  highlight:
+    noClasses: false
+    lineNos: true
+    lineNumbersInTable: true
+    lineNoStart: 1
+
 params:
   ananke_socials:
     - name: github
