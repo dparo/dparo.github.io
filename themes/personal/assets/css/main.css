@@ -329,11 +329,35 @@ p {
   color: var(--subtext1);
 }
 
+/* ── Single-post header: date + read time ── */
+.post-meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.post-meta time {
+  font-size: 0.85rem;
+  color: var(--overlay0);
+}
+
+/* Fallback: bare <time> on pages that don't use .post-meta */
 time {
   display: block;
   font-size: 0.85rem;
   color: var(--overlay0);
   margin-bottom: 1.25rem;
+}
+
+/* ── Read-time badge ── */
+.read-time {
+  font-size: 0.8rem;
+  color: var(--overlay0);
+  background-color: var(--surface0);
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  white-space: nowrap;
 }
 
 /* ─── Links ──────────────────────────────────────────────────── */
@@ -416,9 +440,24 @@ section p {
   color: var(--text);
 }
 
-/* ─── Post-card date (tighter than the single-page date) ─────── */
-section time {
+/* ─── Post-card meta row (date + read time) ──────────────────── */
+.card-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
   margin-bottom: 0.5rem;
+}
+
+.card-meta time {
+  font-size: 0.85rem;
+  color: var(--overlay0);
+}
+
+/* ─── Giscus comments wrapper ────────────────────────────────── */
+.giscus-wrapper {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--surface0);
 }
 
 /* ─── Pagination ─────────────────────────────────────────────── */

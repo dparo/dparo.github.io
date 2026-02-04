@@ -3,8 +3,15 @@
 
   {{ $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }}
   {{ $dateHuman := .Date | time.Format ":date_long" }}
-  <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
+  {{ $readMin := div (add .WordCount 100) 200 }}
+  {{ if lt $readMin 1 }}{{ $readMin = 1 }}{{ end }}
+
+  <div class="post-meta">
+    <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
+    <span class="read-time">{{ $readMin }} min read</span>
+  </div>
 
   {{ .Content }}
   {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
+  {{ partial "giscus.html" . }}
 {{ end }}

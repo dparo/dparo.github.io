@@ -1,0 +1,31 @@
+{{- /*
+Renders the giscus comment widget for the current page.
+
+All configuration is driven by site.Params.giscus in hugo.yaml.
+The widget only renders on single (leaf) pages — list pages and the
+home page are skipped.
+
+Prerequisites (see hugo.yaml for details):
+  1. Enable Discussions on the GitHub repository.
+  2. Install the giscus GitHub App.
+  3. Set categoryName + categoryId to a real Discussion category.
+*/}}
+
+{{- with site.Params.giscus }}
+<div class="giscus-wrapper">
+  <script src="https://giscus.app/client.js"
+          data-repo="{{ .repo }}"
+          data-repo-id="{{ .repoId }}"
+          data-category="{{ .categoryName }}"
+          data-category-id="{{ .categoryId }}"
+          data-mapping="{{ .mapping }}"
+          data-strict="{{ .strict }}"
+          data-reactions-enabled="{{ .reactionsEnabled }}"
+          data-emit-metadata="{{ .emitMetadata }}"
+          data-input-position="{{ .inputPosition }}"
+          data-theme="{{ .theme }}"
+          data-lang="{{ .lang }}"
+          crossorigin="anonymous"
+          async></script>
+</div>
+{{- end }}
