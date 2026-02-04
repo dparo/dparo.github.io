@@ -86,9 +86,14 @@ header h1 .site-title:hover {
   color: var(--peach);
 }
 
-/* house icon: slightly smaller so it doesn't overpower the text */
-header h1 .site-title .fa-house {
-  font-size: 0.85em;
+/* GitHub avatar next to the site title */
+header h1 .site-title .avatar {
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 50%;
+  border: 2px solid var(--surface1);
+  object-fit: cover;
+  vertical-align: middle;
 }
 
 /* ─── Nav ────────────────────────────────────────────────────── */
