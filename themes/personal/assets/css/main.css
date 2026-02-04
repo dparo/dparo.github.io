@@ -48,6 +48,11 @@ body {
   padding: 0 1.25rem;
 }
 
+/* main's container stretches to fit content + sidebar */
+main > .container {
+  max-width: 1080px;
+}
+
 /* ─── Header ─────────────────────────────────────────────────── */
 header {
   width: 100%;
@@ -109,6 +114,205 @@ main {
   flex: 1;
   width: 100%;
   padding: 2.5rem 0;
+}
+
+/* ─── Two-column layout ──────────────────────────────────────── */
+.layout {
+  display: flex;
+  gap: 2.5rem;
+  align-items: flex-start;
+}
+
+.content {
+  flex: 1;
+  min-width: 0; /* prevent flex children from overflowing */
+  max-width: 740px;
+}
+
+/* ─── Sidebar ────────────────────────────────────────────────── */
+.sidebar {
+  flex: 0 0 260px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Individual panel (card) inside the sidebar */
+.sidebar-panel {
+  background-color: var(--mantle);
+  border: 1px solid var(--surface0);
+  border-radius: 8px;
+  padding: 1.25rem;
+}
+
+.sidebar-panel h3 {
+  margin: 0 0 0.9rem;
+  font-size: 0.88rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--overlay0);
+}
+
+/* ── Tags list ── */
+.sidebar-tags {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.sidebar-tags li a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background-color: var(--surface0);
+  color: var(--lavender);
+  font-size: 0.82rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.sidebar-tags li a:hover {
+  background-color: var(--surface1);
+  color: var(--text);
+}
+
+.tag-count {
+  font-size: 0.75rem;
+  color: var(--overlay0);
+}
+
+/* ── Archive tree ── */
+.archive-years {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* All <details> at every level */
+.archive-years details,
+.archive-months details {
+  margin-bottom: 0.15rem;
+}
+
+/* <summary> — the clickable row */
+.archive-years summary,
+.archive-months summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.3rem 0;
+  cursor: pointer;
+  list-style: none;        /* hide default triangle */
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Hide default disclosure triangle across browsers */
+.archive-years summary::-webkit-details-marker,
+.archive-months summary::-webkit-details-marker {
+  display: none;
+}
+
+/* The year / month label link */
+.archive-link {
+  color: var(--subtext1);
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.archive-link:hover {
+  color: var(--text);
+}
+
+/* Post titles inside a month are slightly indented and smaller */
+.archive-posts .archive-link {
+  font-size: 0.82rem;
+  color: var(--subtext0);
+}
+
+.archive-posts .archive-link:hover {
+  color: var(--lavender);
+}
+
+/* Count badge next to year/month labels */
+.archive-count {
+  font-size: 0.75rem;
+  color: var(--overlay0);
+  background-color: var(--surface0);
+  padding: 0.1rem 0.4rem;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+
+/* Nested month list — indented */
+.archive-months {
+  list-style: none;
+  padding: 0;
+  margin: 0.25rem 0 0.1rem;
+  padding-left: 1rem;
+  border-left: 2px solid var(--surface0);
+  margin-left: 0.35rem;
+}
+
+/* Post list inside a month — further indented */
+.archive-posts {
+  list-style: none;
+  padding: 0;
+  margin: 0.2rem 0 0.15rem;
+  padding-left: 1rem;
+  border-left: 2px solid var(--surface1);
+  margin-left: 0.35rem;
+}
+
+.archive-posts li {
+  padding: 0.15rem 0;
+}
+
+/* ── Filtered-results banner ── */
+.filter-banner {
+  display: none;                /* hidden by default; JS shows it */
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--surface0);
+  border: 1px solid var(--surface1);
+  border-radius: 6px;
+  padding: 0.55rem 0.85rem;
+  margin-bottom: 1rem;
+  font-size: 0.88rem;
+  color: var(--subtext1);
+}
+
+.filter-banner.active {
+  display: flex;
+}
+
+.filter-banner a.clear-filter {
+  color: var(--blue);
+  font-size: 0.82rem;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.filter-banner a.clear-filter:hover {
+  color: var(--lavender);
+}
+
+/* ── No-results message (shown when filter matches nothing) ── */
+.no-results {
+  display: none;
+  color: var(--overlay0);
+  font-size: 0.9rem;
+  padding: 1rem 0;
+}
+
+.no-results.active {
+  display: block;
 }
 
 /* ─── Typography ─────────────────────────────────────────────── */
@@ -472,6 +676,27 @@ footer p {
 }
 
 /* ─── Responsive ─────────────────────────────────────────────── */
+
+/* Sidebar stacks above content when viewport is narrow */
+@media (max-width: 860px) {
+  .layout {
+    flex-direction: column-reverse; /* sidebar first (top), content below */
+  }
+
+  .sidebar {
+    flex: none;
+    width: 100%;
+  }
+
+  .content {
+    max-width: 100%;
+  }
+
+  main > .container {
+    max-width: 740px;
+  }
+}
+
 @media (max-width: 540px) {
   header .container {
     flex-direction: column;
