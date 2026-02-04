@@ -100,12 +100,33 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // ── Archive <details> click: prevent navigation when clicking summary ─
-  // The <summary> contains an <a> (for the filter shortcut) and an
-  // .archive-count badge.  A click anywhere on <summary> should toggle
-  // the <details> open/closed.  A click directly on the <a> should
-  // ALSO navigate.  We let the browser handle both natively — the <a>
-  // navigates and the <details> toggles — which is the correct default.
-  // No extra JS needed here.
+  // ── Heading anchor links ─────────────────────────────────────
+  // For every content heading that Hugo gave an id, prepend a small
+  // <a class="heading-anchor"> containing the FA link icon.
+  // On click: push #id into the URL via replaceState (no page jump)
+  // and flash the icon green briefly as confirmation.
+
+  document.querySelectorAll('.content h2[id], .content h3[id], .content h4[id]').forEach((heading) => {
+    const id   = heading.id;
+    const link = document.createElement('a');
+    link.className = 'heading-anchor';
+    link.setAttribute('href', '#' + id);
+    link.setAttribute('aria-label', 'Link to ' + heading.textContent.trim());
+    link.innerHTML = '<i class="fa-solid fa-link"></i>';
+
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+
+      // Update the URL hash without scrolling
+      history.replaceState(null, '', window.location.pathname + window.location.search + '#' + id);
+
+      // Flash confirmation
+      link.classList.add('clicked');
+      setTimeout(() => link.classList.remove('clicked'), 1200);
+    });
+
+    // Prepend so the icon sits before the heading text in the DOM
+    heading.prepend(link);
+  });
 
 });

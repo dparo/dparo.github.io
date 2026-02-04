@@ -340,6 +340,50 @@ h1 { font-size: 1.85rem; }
 h2 { font-size: 1.35rem; }
 h3 { font-size: 1.1rem;  }
 
+/* ── Heading anchor links (injected by JS into content headings) ─ */
+/* Every content heading with an id gets position: relative so the
+   anchor icon can sit to its left without disturbing the text flow. */
+.content h2[id],
+.content h3[id],
+.content h4[id] {
+  position: relative;
+}
+
+/* The anchor <a> itself — invisible until hover */
+.heading-anchor {
+  position: absolute;
+  left: -1.6rem;                  /* park to the left of the heading text */
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--overlay0);
+  opacity: 0;
+  transition: opacity 0.2s, color 0.2s;
+  text-decoration: none;
+  font-size: 0.75em;
+  line-height: 1;
+  /* keep it out of the tab order until visible */
+  pointer-events: none;
+}
+
+/* Reveal on heading hover */
+.content h2[id]:hover .heading-anchor,
+.content h3[id]:hover .heading-anchor,
+.content h4[id]:hover .heading-anchor {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Tint blue on its own hover (the icon itself) */
+.heading-anchor:hover {
+  color: var(--blue);
+}
+
+/* Flash state: briefly tint green after click (set by JS) */
+.heading-anchor.clicked {
+  color: var(--green);
+  opacity: 1;
+}
+
 p {
   color: var(--subtext1);
 }
