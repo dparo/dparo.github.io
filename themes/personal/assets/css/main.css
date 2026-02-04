@@ -787,27 +787,54 @@ footer {
   width: 100%;
   background-color: var(--mantle);
   border-top: 1px solid var(--surface0);
-  padding: 1.25rem 0;
+  padding: 2rem 0 1.5rem;
   text-align: center;
 }
 
-footer p {
-  margin: 0;
-  font-size: 0.82rem;
-  color: var(--overlay0);
+/* ── Social icon grid ── */
+.footer-socials {
+  list-style: none;
+  margin: 0 0 1.25rem;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
 }
 
-footer a {
-  color: var(--overlay0);
-  transition: color 0.2s;
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 8px;
+  border: 1px solid var(--surface0);
+  background-color: var(--surface0);
+  color: var(--subtext0);
+  text-decoration: none;
+  font-size: 1.15rem;
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s, transform 0.15s;
 }
 
-footer a:hover {
+.social-link:hover {
+  background-color: var(--surface1);
+  border-color: var(--surface1);
   color: var(--text);
+  transform: translateY(-2px);
 }
 
-footer .fa-github {
-  font-size: 1.1em;
+/* Per-brand accent colours on hover */
+.social-link:has(.fa-github):hover        { color: var(--text);      }
+.social-link:has(.fa-linkedin):hover      { color: var(--blue);     }
+.social-link:has(.fa-x-twitter):hover     { color: var(--subtext1); }
+.social-link:has(.fa-envelope):hover      { color: var(--peach);    }
+
+/* ── Copyright line ── */
+.footer-copy {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--overlay0);
 }
 
 /* ─── Responsive ─────────────────────────────────────────────── */

@@ -23,10 +23,30 @@ markup:
     lineNoStart: 1
 
 params:
-  ananke_socials:
-    - name: github
+  # ── Social links rendered as an icon grid in the footer ─────────
+  # icon: the Font Awesome class after "fa-brands fa-" or "fa-solid fa-"
+  # brand: true  →  fa-brands  |  brand: false (or omit) →  fa-solid
+  socials:
+    - name: GitHub
       url: https://github.com/dparo
-      label: GitHub Account
+      label: GitHub
+      icon: github
+      brand: true
+    - name: LinkedIn
+      url: https://linkedin.com/in/dparo
+      label: LinkedIn
+      icon: linkedin
+      brand: true
+    - name: Twitter / X
+      url: https://twitter.com/dparo
+      label: Twitter / X
+      icon: x-twitter
+      brand: true
+    - name: Email
+      url: mailto:dparo@example.com
+      label: Email
+      icon: envelope
+      brand: false
 
   ShowCodeCopyButtons: true
 

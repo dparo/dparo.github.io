@@ -1,7 +1,20 @@
-<p>
-  <a href="https://github.com/dparo" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-  &middot;
-  <i class="fa-regular fa-circle-user"></i> dparo
-  &middot;
-  <i class="fa-regular fa-copyright"></i> {{ now.Year }}. All rights reserved.
+{{- /* Social icon grid */}}
+{{- with site.Params.socials }}
+<ul class="footer-socials">
+  {{- range . }}
+  <li>
+    <a href="{{ .url }}"
+       target="_blank"
+       rel="noopener noreferrer"
+       aria-label="{{ .label }}"
+       class="social-link">
+      <i class="{{ if .brand }}fa-brands{{ else }}fa-solid{{ end }} fa-{{ .icon }}"></i>
+    </a>
+  </li>
+  {{- end }}
+</ul>
+{{- end }}
+
+<p class="footer-copy">
+  <i class="fa-regular fa-copyright"></i> {{ now.Year }} dparo. All rights reserved.
 </p>
