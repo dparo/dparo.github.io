@@ -8,6 +8,18 @@ pagination:
 
 menu:
   main:
+    - identifier: posts
+      name: Posts
+      pageRef: '/posts'
+      weight: 20
+      params:
+        icon: 'fa-solid fa-newspaper'
+    - identifier: tags
+      name: Tags
+      pageRef: '/tags'
+      weight: 30
+      params:
+        icon: 'fa-solid fa-tags'
     - identifier: ms-degree-dissertation
       name: Dissertation
       url: /documents/msc.pdf

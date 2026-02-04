@@ -106,6 +106,9 @@ nav ul {
 }
 
 nav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
   color: var(--subtext1);
   text-decoration: none;
   font-size: 0.95rem;
