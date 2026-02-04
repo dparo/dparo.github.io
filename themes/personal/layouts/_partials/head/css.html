@@ -1,3 +1,10 @@
+<!-- Font Awesome 6 (free) ─ icons used site-wide -->
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Fy9wxTCEupWRIkk2/ESGDf3UN7DtdtIrJu3qZds57yCTd6kkQtDD9sCU1toufkq6FBo+2tIT1FeXQz+aoaluYrA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer">
+
 {{- with resources.Get "css/main.css" }}
   {{- if hugo.IsDevelopment }}
     <link rel="stylesheet" href="{{ .RelPermalink }}">

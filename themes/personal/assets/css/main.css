@@ -76,6 +76,21 @@ header h1 {
   letter-spacing: 0.02em;
 }
 
+/* site-title link inside h1 — inherit heading colour, no underline */
+header h1 .site-title {
+  color: inherit;
+  text-decoration: none;
+}
+
+header h1 .site-title:hover {
+  color: var(--peach);
+}
+
+/* house icon: slightly smaller so it doesn't overpower the text */
+header h1 .site-title .fa-house {
+  font-size: 0.85em;
+}
+
 /* ─── Nav ────────────────────────────────────────────────────── */
 nav ul {
   list-style: none;
@@ -473,6 +488,17 @@ section p {
   border-top: 1px solid var(--surface0);
 }
 
+.giscus-wrapper h3 {
+  margin: 0 0 1rem;
+  font-size: 1.1rem;
+  color: var(--subtext1);
+}
+
+.giscus-wrapper h3 .fa-comments {
+  color: var(--blue);
+  margin-right: 0.4rem;
+}
+
 /* ─── Pagination ─────────────────────────────────────────────── */
 .pagination {
   margin-top: 2rem;
@@ -725,6 +751,19 @@ footer p {
   margin: 0;
   font-size: 0.82rem;
   color: var(--overlay0);
+}
+
+footer a {
+  color: var(--overlay0);
+  transition: color 0.2s;
+}
+
+footer a:hover {
+  color: var(--text);
+}
+
+footer .fa-github {
+  font-size: 1.1em;
 }
 
 /* ─── Responsive ─────────────────────────────────────────────── */

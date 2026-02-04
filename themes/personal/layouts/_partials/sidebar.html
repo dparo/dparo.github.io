@@ -11,7 +11,7 @@ params; client-side JS in main.js filters the post cards accordingly.
   {{- /* ── Tags ── */}}
   {{- with site.Taxonomies.tags }}
   <div class="sidebar-panel">
-    <h3>Tags</h3>
+    <h3><i class="fa-solid fa-tag"></i> Tags</h3>
     <ul class="sidebar-tags">
       {{- range .ByCount }}
         <li>
@@ -25,7 +25,7 @@ params; client-side JS in main.js filters the post cards accordingly.
   {{- /* ── Archive ── */}}
   {{- with site.RegularPages }}
   <div class="sidebar-panel">
-    <h3>Archive</h3>
+    <h3><i class="fa-solid fa-box-archive"></i> Archive</h3>
     <ul class="archive-years">
       {{- range .GroupByDate "2006" }}
         {{- $year := .Key }}

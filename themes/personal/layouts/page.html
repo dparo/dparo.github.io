@@ -7,8 +7,8 @@
   {{ if lt $readMin 1 }}{{ $readMin = 1 }}{{ end }}
 
   <div class="post-meta">
-    <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
-    <span class="read-time">{{ $readMin }} min read</span>
+    <time datetime="{{ $dateMachine }}"><i class="fa-regular fa-calendar"></i> {{ $dateHuman }}</time>
+    <span class="read-time"><i class="fa-regular fa-clock"></i> {{ $readMin }} min read</span>
   </div>
 
   {{ .Content }}
