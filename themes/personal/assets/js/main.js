@@ -125,8 +125,8 @@ document.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => link.classList.remove('clicked'), 1200);
     });
 
-    // Prepend so the icon sits before the heading text in the DOM
-    heading.prepend(link);
+    // Append so the icon sits right after the heading text in the DOM
+    heading.append(link);
   });
 
 });
