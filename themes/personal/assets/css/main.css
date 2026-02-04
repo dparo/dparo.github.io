@@ -370,13 +370,13 @@ time {
   white-space: nowrap;
 }
 
-/* Dot separator between date and read-time */
-.read-time::before {
+/* Dot separator — lives after <time>, outside the pill */
+.post-meta time::after,
+.card-meta time::after {
   content: '·';
-  margin-right: 0.75rem;
   margin-left:  0.75rem;
-  background: none;        /* cancel any inherited background */
-  padding: 0;
+  margin-right: 0.75rem;
+  color: var(--overlay0);
 }
 
 /* ─── Links ──────────────────────────────────────────────────── */
