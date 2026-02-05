@@ -1,4 +1,20 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>dparo's website</title><link>https://dparo.github.io/</link><description>Recent content on dparo's website</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Tue, 12 Jul 2022 16:25:27 +0200</lastBuildDate><atom:link href="https://dparo.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Msc Dissertation</title><link>https://dparo.github.io/posts/msc-dissertation/</link><pubDate>Tue, 12 Jul 2022 16:25:27 +0200</pubDate><guid>https://dparo.github.io/posts/msc-dissertation/</guid><description>&lt;ol&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Home on dparo's website</title><link>https://dparo.github.io/</link><description>Recent content in Home on dparo's website</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Mon, 01 Jan 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://dparo.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>About</title><link>https://dparo.github.io/about/</link><pubDate>Mon, 01 Jan 2024 00:00:00 +0000</pubDate><guid>https://dparo.github.io/about/</guid><description>&lt;p&gt;Hi, I&amp;rsquo;m &lt;strong&gt;dparo&lt;/strong&gt; — a software engineer and occasional blogger.&lt;/p&gt;
+&lt;p&gt;I use this site to write about the topics I find interesting: systems design,
+programming languages, cloud infrastructure, and the day-to-day craft of
+building software.&lt;/p&gt;
+&lt;h3 id="education"&gt;Education&lt;/h3&gt;
+&lt;p&gt;I completed my &lt;strong&gt;Master of Science&lt;/strong&gt; degree, producing both a
+&lt;a href="https://dparo.github.io/documents/msc.pdf"&gt;dissertation&lt;/a&gt; and a
+&lt;a href="https://dparo.github.io/documents/msc-presentation.pdf"&gt;presentation&lt;/a&gt;, which are available for
+download.&lt;/p&gt;
+&lt;h3 id="what-youll-find-here"&gt;What you&amp;rsquo;ll find here&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Posts&lt;/strong&gt; — technical write-ups on a wide range of engineering subjects.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Tags&lt;/strong&gt; — a quick way to browse posts by topic.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Dissertation &amp;amp; Presentation&lt;/strong&gt; — my MSc academic work, linked directly from
+the navigation bar.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Feel free to reach out through any of the social links in the footer.&lt;/p&gt;</description></item><item><title>Msc Dissertation</title><link>https://dparo.github.io/posts/msc-dissertation/</link><pubDate>Tue, 12 Jul 2022 16:25:27 +0200</pubDate><guid>https://dparo.github.io/posts/msc-dissertation/</guid><description>&lt;ol&gt;
 &lt;li&gt;The disseration can be read at this &lt;a href="https://dparo.github.io/documents/msc.pdf"&gt;URL&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;The slides can be found on this &lt;a href="https://dparo.github.io/documents/msc-presentation.pdf"&gt;URL&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;</description></item><item><title>My First Post</title><link>https://dparo.github.io/posts/my-first-post/</link><pubDate>Thu, 23 Jun 2022 17:24:45 +0200</pubDate><guid>https://dparo.github.io/posts/my-first-post/</guid><description>&lt;p&gt;Hello, world!&lt;/p&gt;</description></item></channel></rss>
