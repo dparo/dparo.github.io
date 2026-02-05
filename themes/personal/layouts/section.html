@@ -1,17 +1,46 @@
 {{ define "main" }}
   <h1>{{ .Title }}</h1>
   {{ .Content }}
-  {{ range .Paginator.Pages }}
-    {{ $readMin := div (add .WordCount 100) 200 }}
-    {{ if lt $readMin 1 }}{{ $readMin = 1 }}{{ end }}
-    <section data-year="{{ .Date | time.Format "2006" }}" data-month="{{ .Date | time.Format "1" }}">
-      <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
-      <div class="card-meta">
-        <time datetime="{{ .Date | time.Format "2006-01-02T15:04:05-07:00" }}"><i class="fa-regular fa-calendar"></i> {{ .Date | time.Format ":date_long" }}</time>
-        <span class="read-time"><i class="fa-regular fa-clock"></i> {{ $readMin }} min read</span>
-      </div>
-      {{ .Summary }}
-    </section>
-  {{ end }}
-  {{ partial "pagination.html" . }}
+
+  {{- /* Determine the list of posts to render.
+         Year / month archive pages (content/posts/<year>/_index.md) set
+         .Params.year (and optionally .Params.month).  In that case we pull
+         every regular page in the "posts" section and filter by date.
+         Otherwise fall back to the normal paginator. */}}
+  {{- $filterYear  := .Params.year  }}
+  {{- $filterMonth := .Params.month }}
+  {{- if $filterYear }}
+    {{- $year  := string $filterYear  }}
+    {{- $month := "" }}{{ if $filterMonth }}{{ $month = string $filterMonth }}{{ end }}
+    {{- range (site.GetPage "posts").Pages.ByDate.Reverse }}
+      {{- $py := .Date | time.Format "2006" }}
+      {{- $pm := .Date | time.Format "1"    }}
+      {{- if and (eq $py $year) (or (eq $month "") (eq $pm $month)) }}
+        {{ $readMin := div (add .WordCount 100) 200 }}
+        {{ if lt $readMin 1 }}{{ $readMin = 1 }}{{ end }}
+        <section>
+          <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
+          <div class="card-meta">
+            <time datetime="{{ .Date | time.Format "2006-01-02T15:04:05-07:00" }}"><i class="fa-regular fa-calendar"></i> {{ .Date | time.Format ":date_long" }}</time>
+            <span class="read-time"><i class="fa-regular fa-clock"></i> {{ $readMin }} min read</span>
+          </div>
+          {{ .Summary }}
+        </section>
+      {{- end }}
+    {{- end }}
+  {{- else }}
+    {{- range .Paginator.Pages }}
+      {{ $readMin := div (add .WordCount 100) 200 }}
+      {{ if lt $readMin 1 }}{{ $readMin = 1 }}{{ end }}
+      <section>
+        <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
+        <div class="card-meta">
+          <time datetime="{{ .Date | time.Format "2006-01-02T15:04:05-07:00" }}"><i class="fa-regular fa-calendar"></i> {{ .Date | time.Format ":date_long" }}</time>
+          <span class="read-time"><i class="fa-regular fa-clock"></i> {{ $readMin }} min read</span>
+        </div>
+        {{ .Summary }}
+      </section>
+    {{- end }}
+    {{ partial "pagination.html" . }}
+  {{- end }}
 {{ end }}

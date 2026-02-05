@@ -2,8 +2,8 @@
 Sidebar: Tags (sorted by count) + Archive (year → month → posts).
 
 Tags link directly to Hugo's term pages (/tags/<name>/).
-Archive links navigate to /posts/ with ?year= and ?year=&month= query
-params; client-side JS in main.js filters the post cards accordingly.
+Archive links navigate to static year/month pages at /posts/<year>/ and
+/posts/<year>/<month>/, generated from _index.md files in content/posts/.
 */}}
 
 <aside class="sidebar">
@@ -32,7 +32,7 @@ params; client-side JS in main.js filters the post cards accordingly.
         <li>
           <details>
             <summary>
-              <a href="/posts/?year={{ $year }}" class="archive-link">{{ $year }}</a>
+              <a href="/posts/{{ $year }}/" class="archive-link">{{ $year }}</a>
               <span class="archive-count">{{ len .Pages }}</span>
             </summary>
             <ul class="archive-months">
@@ -44,7 +44,7 @@ params; client-side JS in main.js filters the post cards accordingly.
                 <li>
                   <details>
                     <summary>
-                      <a href="/posts/?year={{ $year }}&amp;month={{ $monthNum }}" class="archive-link">{{ $monthName }}</a>
+                      <a href="/posts/{{ $year }}/{{ $monthNum }}/" class="archive-link">{{ $monthName }}</a>
                       <span class="archive-count">{{ len .Pages }}</span>
                     </summary>
                     <ul class="archive-posts">
