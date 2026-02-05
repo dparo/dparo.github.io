@@ -74,6 +74,15 @@ params:
 
   ShowCodeCopyButtons: true
 
+  # ── KaTeX math rendering ──────────────────────────────────────
+  # enabled: true   →  KaTeX CSS + JS are included on every page and
+  #                    auto-render scans the page for $…$ / $$…$$.
+  # enabled: false  →  nothing is emitted; math expressions stay as
+  #                    plain text.
+  # Omit the whole block or omit "enabled" to get the default (true).
+  katex:
+    enabled: true
+
   # ── Giscus (GitHub Discussions comments) ──────────────────────
   # Prerequisites before comments go live:
   #   1. Enable Discussions on https://github.com/dparo/dparo.github.io/settings
