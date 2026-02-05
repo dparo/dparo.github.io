@@ -1,0 +1,20 @@
+{{- /*
+  math shortcode – renders a KaTeX math expression.
+
+  Usage:
+    Inline  :  {{< math >}}\frac{1}{2}{{< /math >}}
+    Display :  {{< math display >}}
+                 \int_0^\infty e^{-x^2}\,dx = \frac{\sqrt{\pi}}{2}
+               {{< /math >}}
+
+  "display" is a positional argument (index 0), checked via .Get 0.
+
+  The wrapper element (<span> or <div>) stops Hugo's goldmark renderer from
+  interfering with the $ / $$ delimiters.  KaTeX's auto-render script picks
+  up the delimiters inside these elements at page-load time.
+*/}}
+{{- if eq (.Get 0) "display" -}}
+<div class="katex-display">$${{ .Inner | safeHTML }}$$</div>
+{{- else -}}
+<span class="katex-inline">${{ .Inner | safeHTML }}$</span>
+{{- end -}}
