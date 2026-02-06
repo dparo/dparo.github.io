@@ -8,6 +8,12 @@ pagination:
 
 menu:
   main:
+    - identifier: home
+      name: Home
+      pageRef: '/'
+      weight: 5
+      params:
+        icon: 'fa-solid fa-house'
     - identifier: about
       name: About
       pageRef: '/about'
@@ -26,18 +32,6 @@ menu:
       weight: 30
       params:
         icon: 'fa-solid fa-tags'
-    - identifier: ms-degree-dissertation
-      name: Dissertation
-      url: /documents/msc.pdf
-      weight: 40
-      params:
-        icon: 'fa-solid fa-book-open'
-    - identifier: msc-presentation
-      name: MSc Presentation
-      url: /documents/msc-presentation.pdf
-      weight: 50
-      params:
-        icon: 'fa-solid fa-chalkboard'
 
 markup:
   highlight:
