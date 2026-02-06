@@ -11,6 +11,17 @@
     <span class="read-time"><i class="fa-regular fa-clock"></i> {{ $readMin }} min read</span>
   </div>
 
+  {{- /* Table of Contents - embedded in content */ -}}
+  {{- if .TableOfContents -}}
+  <div class="toc-container">
+    <h2 class="toc-heading"><i class="fa-solid fa-list"></i> Table of Contents</h2>
+    <nav class="toc" id="toc">
+      {{ .TableOfContents }}
+    </nav>
+  </div>
+  {{- end -}}
+
+
   {{ .Content }}
   {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
 
