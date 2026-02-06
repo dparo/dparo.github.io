@@ -996,15 +996,14 @@ footer {
 
 /* ─── Responsive ─────────────────────────────────────────────── */
 
-/* Sidebar stacks above content when viewport is narrow */
+/* Hide sidebar completely on mobile devices */
 @media (max-width: 860px) {
   .layout {
-    flex-direction: column-reverse; /* sidebar first (top), content below */
+    flex-direction: column;
   }
 
   .sidebar {
-    flex: none;
-    width: 100%;
+    display: none; /* Completely hide sidebar on mobile */
   }
 
   .content {
