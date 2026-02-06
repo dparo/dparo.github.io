@@ -4,7 +4,7 @@ title: dparo's website
 theme: personal
 publishdir: ./dist/
 pagination:
-  pagerSize: 20
+  pagerSize: 10
 
 menu:
   main:
@@ -45,6 +45,16 @@ markup:
     lineNos: true
     lineNumbersInTable: true
     lineNoStart: 1
+
+related:
+  includeNewer: true
+  indices:
+    - name: tags
+      weight: 80
+    - name: date
+      weight: 10
+  threshold: 50
+  toLower: false
 
 params:
   # ── Social links rendered as an icon grid in the footer ─────────

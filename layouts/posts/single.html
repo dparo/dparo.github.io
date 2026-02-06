@@ -1,0 +1,115 @@
+{{ define "main" }}
+  <h1>{{ .Title }}</h1>
+
+  {{ $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }}
+  {{ $dateHuman := .Date | time.Format ":date_long" }}
+  {{ $readMin := div (add .WordCount 100) 200 }}
+  {{ if lt $readMin 1 }}{{ $readMin = 1 }}{{ end }}
+
+  <div class="post-meta">
+    <time datetime="{{ $dateMachine }}"><i class="fa-regular fa-calendar"></i> {{ $dateHuman }}</time>
+    <span class="read-time"><i class="fa-regular fa-clock"></i> {{ $readMin }} min read</span>
+  </div>
+
+  {{ .Content }}
+  {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
+
+  {{- /* Related Posts Section */ -}}
+  {{- $related := .Site.RegularPages.Related . | first 3 -}}
+  {{- if $related -}}
+    <div class="related-posts">
+      <h2>Related Posts</h2>
+      <div class="related-posts-grid">
+        {{- range $related -}}
+          {{- $readMin := div (add .WordCount 100) 200 -}}
+          {{- if lt $readMin 1 }}{{ $readMin = 1 }}{{ end -}}
+          <article class="related-post-card">
+            <h3><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h3>
+            <div class="card-meta">
+              <time datetime="{{ .Date | time.Format "2006-01-02T15:04:05-07:00" }}">
+                <i class="fa-regular fa-calendar"></i> {{ .Date | time.Format ":date_long" }}
+              </time>
+              <span class="read-time">
+                <i class="fa-regular fa-clock"></i> {{ $readMin }} min read
+              </span>
+            </div>
+            {{- with .Summary -}}
+              <p class="related-summary">{{ . | plainify | truncate 120 }}</p>
+            {{- end -}}
+          </article>
+        {{- end -}}
+      </div>
+    </div>
+
+    <style>
+      .related-posts {
+        margin: 3rem 0 2rem;
+        padding-top: 2rem;
+        border-top: 2px solid var(--surface1);
+      }
+
+      .related-posts h2 {
+        color: var(--pink);
+        margin-bottom: 1.5rem;
+        font-size: 1.5rem;
+      }
+
+      .related-posts-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .related-post-card {
+        background: var(--surface0);
+        border: 1px solid var(--surface1);
+        border-radius: 8px;
+        padding: 1.25rem;
+        transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+      }
+
+      .related-post-card:hover {
+        transform: translateY(-2px);
+        border-color: var(--lavender);
+        box-shadow: 0 4px 12px rgba(180, 190, 254, 0.15);
+      }
+
+      .related-post-card h3 {
+        margin: 0 0 0.75rem;
+        font-size: 1.125rem;
+        line-height: 1.4;
+      }
+
+      .related-post-card h3 a {
+        color: var(--text);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+
+      .related-post-card h3 a:hover {
+        color: var(--lavender);
+      }
+
+      .related-post-card .card-meta {
+        font-size: 0.8rem;
+        color: var(--subtext0);
+        margin-bottom: 0.75rem;
+      }
+
+      .related-summary {
+        color: var(--subtext1);
+        font-size: 0.9rem;
+        line-height: 1.5;
+        margin: 0;
+      }
+
+      @media (max-width: 768px) {
+        .related-posts-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  {{- end -}}
+
+  {{ partial "giscus.html" . }}
+{{ end }}
