@@ -87,16 +87,6 @@
     {{- end -}}
   </div>
 
-  {{- /* Archive Navigation */ -}}
-  <div class="archive-section">
-    <h2>Browse by Year</h2>
-    <div class="year-links">
-      {{- range sort $years "value" "desc" -}}
-        <a href="/posts/{{ . }}/" class="year-badge">{{ . }}</a>
-      {{- end -}}
-    </div>
-  </div>
-
   <style>
     .hero {
       text-align: center;
