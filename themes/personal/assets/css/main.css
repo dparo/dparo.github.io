@@ -489,6 +489,38 @@ section p {
   margin-bottom: 0.5rem;
 }
 
+/* ─── Abstract section ───────────────────────────────────────── */
+.abstract-container {
+  background-color: var(--surface0);
+  border-left: 4px solid var(--lavender);
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  margin: 2rem 0;
+}
+
+.abstract-heading {
+  margin: 0 0 0.75rem;
+  font-size: 0.88rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--lavender);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.abstract-heading i {
+  font-size: 0.9rem;
+}
+
+.abstract-content {
+  color: var(--subtext1);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin: 0;
+  font-style: italic;
+}
+
 /* ─── Giscus comments wrapper ────────────────────────────────── */
 .giscus-wrapper {
   margin-top: 3rem;

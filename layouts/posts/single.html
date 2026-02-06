@@ -11,6 +11,14 @@
     <span class="read-time"><i class="fa-regular fa-clock"></i> {{ $readMin }} min read</span>
   </div>
 
+  {{- /* Abstract - optional, from frontmatter */ -}}
+  {{- with .Params.abstract -}}
+  <div class="abstract-container">
+    <h2 class="abstract-heading"><i class="fa-solid fa-file-lines"></i> Abstract</h2>
+    <p class="abstract-content">{{ . }}</p>
+  </div>
+  {{- end -}}
+
   {{- /* Table of Contents - embedded in content */ -}}
   {{- if .TableOfContents -}}
   <div class="toc-container">
