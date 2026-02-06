@@ -51,7 +51,9 @@
   {{- /* GitHub Contribution Graph */ -}}
   <div class="github-section">
     <h2>GitHub Activity</h2>
-    <img src="https://ghchart.rshah.org/dparo" alt="dparo's GitHub contribution chart" class="github-chart" />
+    <div class="github-chart-container">
+      <img src="https://ghchart.rshah.org/89b4fa/dparo" alt="dparo's GitHub contribution chart" class="github-chart" />
+    </div>
     <p class="github-link">
       <a href="https://github.com/dparo" target="_blank" rel="noopener">
         <i class="fa-brands fa-github"></i> View full profile on GitHub
@@ -201,27 +203,48 @@
       color: var(--pink);
     }
     
+    .github-chart-container {
+      background: var(--mantle);
+      border: 1px solid var(--surface1);
+      border-radius: 10px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    
+    .github-chart-container:hover {
+      border-color: var(--blue);
+      box-shadow: 0 6px 24px rgba(137, 180, 250, 0.2);
+    }
+    
     .github-chart {
       max-width: 100%;
       height: auto;
-      border-radius: 8px;
-      border: 1px solid var(--surface1);
-      box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+      border-radius: 6px;
+      display: block;
+      margin: 0 auto;
     }
     
     .github-link {
-      margin-top: 1rem;
+      margin-top: 1.25rem;
       font-size: 0.875rem;
     }
     
     .github-link a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
       color: var(--subtext1);
       text-decoration: none;
-      transition: color 0.2s;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      background: var(--surface0);
+      transition: color 0.2s, background 0.2s;
     }
     
     .github-link a:hover {
       color: var(--blue);
+      background: var(--surface1);
     }
 
     .recent-posts {
