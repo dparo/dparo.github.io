@@ -31,14 +31,14 @@
   {{- end -}}
 
   <div class="stats-grid">
-    <div class="stat-card">
+    <a href="/posts/" class="stat-card">
       <div class="stat-number">{{ $postCount }}</div>
       <div class="stat-label">Posts</div>
-    </div>
-    <div class="stat-card">
+    </a>
+    <a href="/tags/" class="stat-card">
       <div class="stat-number">{{ $tagCount }}</div>
       <div class="stat-label">Tags</div>
-    </div>
+    </a>
     <div class="stat-card">
       <div class="stat-number">{{ $yearCount }}</div>
       <div class="stat-label">Years Active</div>
@@ -155,12 +155,25 @@
       text-align: center;
       border: 1px solid var(--surface1);
       transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+      display: block;
+      text-decoration: none;
+      color: inherit;
     }
     
     .stat-card:hover {
       transform: translateY(-2px);
       border-color: var(--lavender);
       box-shadow: 0 4px 12px rgba(180, 190, 254, 0.2);
+    }
+    
+    /* Non-linked stat cards (Years Active) should not have cursor pointer */
+    .stat-card:not([href]) {
+      cursor: default;
+    }
+    
+    /* Linked stat cards should have cursor pointer */
+    .stat-card[href] {
+      cursor: pointer;
     }
     
     .stat-number {
