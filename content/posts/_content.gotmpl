@@ -4,7 +4,7 @@
 {{- $yearMonthsSlice := slice -}}
 {{- $postsDir := "content/posts" -}}
 {{- range (readDir $postsDir) -}}
-  {{- if and (not .IsDir) (strings.HasPrefix .Name "post-") (strings.HasSuffix .Name ".md") -}}
+  {{- if and (not .IsDir) (strings.HasSuffix .Name ".md") (not (strings.HasPrefix .Name "_")) -}}
     {{- $filePath := printf "%s/%s" $postsDir .Name -}}
     {{- $content := readFile $filePath -}}
     
