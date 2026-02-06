@@ -24,7 +24,9 @@ at layouts/_content_adapters/posts.html.
   {{- end }}
 
   {{- /* ── Archive ── */}}
-  {{- with site.RegularPages }}
+  {{- /* Filter to only include pages from the posts section */ -}}
+  {{- $postsPages := where site.RegularPages "Section" "posts" }}
+  {{- with $postsPages }}
   <div class="sidebar-panel">
     <h3><i class="fa-solid fa-box-archive"></i> Archive</h3>
     <ul class="archive-years">
