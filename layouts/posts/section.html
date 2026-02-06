@@ -25,8 +25,11 @@
       {{- end -}}
     {{- end -}}
     
-    {{- /* Display filtered posts */ -}}
-    {{- range $filteredPosts -}}
+    {{- /* Paginate filtered posts */ -}}
+    {{- $paginator := .Paginate $filteredPosts -}}
+    
+    {{- /* Display paginated posts */ -}}
+    {{- range $paginator.Pages -}}
       {{- $readMin := div (add .WordCount 100) 200 -}}
       {{- if lt $readMin 1 }}{{ $readMin = 1 }}{{ end -}}
       <section>
@@ -38,6 +41,7 @@
         {{ .Summary }}
       </section>
     {{- end -}}
+    {{ partial "pagination.html" . }}
   {{- else -}}
     {{- /* Regular section page - show all posts with pagination */ -}}
     {{- range .Paginator.Pages -}}
