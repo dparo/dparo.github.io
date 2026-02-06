@@ -40,7 +40,7 @@ at layouts/_content_adapters/posts.html.
               {{- range .Pages.GroupByDate "January 2006" }}
                 {{- /* Derive month number from the first page's date */}}
                 {{- $firstPage := index .Pages 0 }}
-                {{- $monthNum  := $firstPage.Date | time.Format "1" }}
+                {{- $monthNum  := $firstPage.Date | time.Format "01" }}
                 {{- $monthName := $firstPage.Date | time.Format "January" }}
                 <li>
                   <details>
