@@ -7,16 +7,22 @@
   {{- if and (not .IsDir) (strings.HasPrefix .Name "post-") (strings.HasSuffix .Name ".md") -}}
     {{- $filePath := printf "%s/%s" $postsDir .Name -}}
     {{- $content := readFile $filePath -}}
-    {{- /* Extract date from frontmatter using regex */ -}}
-    {{- $dateMatch := findRE `(?m)^date:\s*([0-9]{4})-([0-9]{2})-([0-9]{2})` $content 1 -}}
-    {{- if $dateMatch -}}
-      {{- $dateLine := index $dateMatch 0 -}}
-      {{- /* Extract year and month */ -}}
-      {{- $yearMatch := findRE `[0-9]{4}` $dateLine 1 -}}
-      {{- $allNumbers := findRE `[0-9]{2,4}` $dateLine -}}
-      {{- if ge (len $allNumbers) 2 -}}
-        {{- $year := index $allNumbers 0 -}}
-        {{- $month := index $allNumbers 1 -}}
+    
+    {{- /* Extract frontmatter between --- delimiters */ -}}
+    {{- $fmMatch := findRE `(?s)^---\n(.+?)\n---` $content 1 -}}
+    {{- if $fmMatch -}}
+      {{- $frontmatterRaw := index $fmMatch 0 -}}
+      {{- /* Remove the --- delimiters */ -}}
+      {{- $frontmatter := replaceRE `(?m)^---\n?` "" $frontmatterRaw -}}
+      
+      {{- /* Parse YAML frontmatter */ -}}
+      {{- $fm := transform.Unmarshal $frontmatter -}}
+      
+      {{- /* Extract date and format to YYYY-MM */ -}}
+      {{- with $fm.date -}}
+        {{- $dateTime := time.AsTime . -}}
+        {{- $year := $dateTime.Format "2006" -}}
+        {{- $month := $dateTime.Format "01" -}}
         {{- $yearMonth := printf "%s-%s" $year $month -}}
         {{- $yearMonthsSlice = $yearMonthsSlice | append $yearMonth -}}
       {{- end -}}
