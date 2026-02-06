@@ -612,10 +612,12 @@ section p {
   content: '▸';
   position: absolute;
   left: 0;
-  top: 0;
+  top: 50%;
+  transform: translateY(-50%);
   color: var(--overlay0);
   transition: color 0.2s, transform 0.2s;
   flex-shrink: 0; /* Prevent bullet from shrinking */
+  line-height: 1;
 }
 
 /* Hover state */
@@ -626,15 +628,14 @@ section p {
 
 .toc nav a:hover::before {
   color: var(--lavender);
-  transform: translateX(0.15rem);
+  transform: translateY(-50%) translateX(0.15rem);
 }
 
 /* Nested links (H3+) - use smaller bullet */
 .toc nav ul ul a::before {
   content: '·';
   font-size: 1.5rem;
-  line-height: 0.5;
-  top: 0.1rem;
+  line-height: 1;
 }
 
 /* Responsive TOC on smaller screens */
