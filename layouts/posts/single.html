@@ -20,7 +20,12 @@
   {{- end -}}
 
   {{- /* Table of Contents - embedded in content */ -}}
-  {{- if .TableOfContents -}}
+  {{- /* Check if toc is enabled (true by default, can be disabled with toc: false) */ -}}
+  {{- $showToc := true -}}
+  {{- if isset .Params "toc" -}}
+    {{- $showToc = .Params.toc -}}
+  {{- end -}}
+  {{- if and $showToc .TableOfContents -}}
   <div class="toc-container">
     <h2 class="toc-heading"><i class="fa-solid fa-list"></i> Table of Contents</h2>
     <nav class="toc" id="toc">
