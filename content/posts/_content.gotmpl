@@ -56,11 +56,13 @@
 {{- range $year, $months := $years -}}
   {{- $yearTitle := printf "Posts from %s" $year -}}
   {{- $yearContent := dict "mediaType" "text/markdown" "value" "" -}}
+  {{- $yearParams := dict "archiveType" "year" "archiveYear" $year -}}
   {{- $yearPage := dict
     "content" $yearContent
     "kind" "section"
     "path" $year
     "title" $yearTitle
+    "params" $yearParams
   -}}
   {{- $.AddPage $yearPage -}}
   
@@ -69,11 +71,13 @@
     {{- $monthName := index $monthNames $month -}}
     {{- $monthTitle := printf "%s %s" $monthName $year -}}
     {{- $monthContent := dict "mediaType" "text/markdown" "value" "" -}}
+    {{- $monthParams := dict "archiveType" "month" "archiveYear" $year "archiveMonth" $month -}}
     {{- $monthPage := dict
       "content" $monthContent
       "kind" "section"
       "path" (printf "%s/%s" $year $month)
       "title" $monthTitle
+      "params" $monthParams
     -}}
     {{- $.AddPage $monthPage -}}
   {{- end -}}

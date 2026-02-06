@@ -1,0 +1,57 @@
+{{ define "main" }}
+  <h1>{{ .Title }}</h1>
+  {{ .Content }}
+  
+  {{- /* Check if this is an archive page */ -}}
+  {{- if .Params.archiveType -}}
+    {{- $archiveYear := .Params.archiveYear -}}
+    {{- $archiveMonth := .Params.archiveMonth -}}
+    {{- $postsSection := site.GetPage "posts" -}}
+    {{- $filteredPosts := slice -}}
+    
+    {{- /* Filter posts by year and optionally month */ -}}
+    {{- range $postsSection.RegularPages -}}
+      {{- $postYear := .Date.Format "2006" -}}
+      {{- $postMonth := .Date.Format "01" -}}
+      
+      {{- if eq $.Params.archiveType "year" -}}
+        {{- if eq $postYear $archiveYear -}}
+          {{- $filteredPosts = $filteredPosts | append . -}}
+        {{- end -}}
+      {{- else if eq $.Params.archiveType "month" -}}
+        {{- if and (eq $postYear $archiveYear) (eq $postMonth $archiveMonth) -}}
+          {{- $filteredPosts = $filteredPosts | append . -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+    
+    {{- /* Display filtered posts */ -}}
+    {{- range $filteredPosts -}}
+      {{- $readMin := div (add .WordCount 100) 200 -}}
+      {{- if lt $readMin 1 }}{{ $readMin = 1 }}{{ end -}}
+      <section>
+        <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
+        <div class="card-meta">
+          <time datetime="{{ .Date | time.Format "2006-01-02T15:04:05-07:00" }}"><i class="fa-regular fa-calendar"></i> {{ .Date | time.Format ":date_long" }}</time>
+          <span class="read-time"><i class="fa-regular fa-clock"></i> {{ $readMin }} min read</span>
+        </div>
+        {{ .Summary }}
+      </section>
+    {{- end -}}
+  {{- else -}}
+    {{- /* Regular section page - show all posts with pagination */ -}}
+    {{- range .Paginator.Pages -}}
+      {{- $readMin := div (add .WordCount 100) 200 -}}
+      {{- if lt $readMin 1 }}{{ $readMin = 1 }}{{ end -}}
+      <section>
+        <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
+        <div class="card-meta">
+          <time datetime="{{ .Date | time.Format "2006-01-02T15:04:05-07:00" }}"><i class="fa-regular fa-calendar"></i> {{ .Date | time.Format ":date_long" }}</time>
+          <span class="read-time"><i class="fa-regular fa-clock"></i> {{ $readMin }} min read</span>
+        </div>
+        {{ .Summary }}
+      </section>
+    {{- end -}}
+    {{ partial "pagination.html" . }}
+  {{- end -}}
+{{ end }}
