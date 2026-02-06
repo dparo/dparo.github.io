@@ -1,7 +1,53 @@
-{{- $archives := .Site.Data.archives -}}
 {{- $monthNames := dict "01" "January" "02" "February" "03" "March" "04" "April" "05" "May" "06" "June" "07" "July" "08" "August" "09" "September" "10" "October" "11" "November" "12" "December" -}}
-{{- range $archives -}}
-  {{- $year := .year -}}
+
+{{- /* Scan the posts directory for markdown files */ -}}
+{{- $yearMonthsSlice := slice -}}
+{{- $postsDir := "content/posts" -}}
+{{- range (readDir $postsDir) -}}
+  {{- if and (not .IsDir) (strings.HasPrefix .Name "post-") (strings.HasSuffix .Name ".md") -}}
+    {{- $filePath := printf "%s/%s" $postsDir .Name -}}
+    {{- $content := readFile $filePath -}}
+    {{- /* Extract date from frontmatter using regex */ -}}
+    {{- $dateMatch := findRE `(?m)^date:\s*([0-9]{4})-([0-9]{2})-([0-9]{2})` $content 1 -}}
+    {{- if $dateMatch -}}
+      {{- $dateLine := index $dateMatch 0 -}}
+      {{- /* Extract year and month */ -}}
+      {{- $yearMatch := findRE `[0-9]{4}` $dateLine 1 -}}
+      {{- $allNumbers := findRE `[0-9]{2,4}` $dateLine -}}
+      {{- if ge (len $allNumbers) 2 -}}
+        {{- $year := index $allNumbers 0 -}}
+        {{- $month := index $allNumbers 1 -}}
+        {{- $yearMonth := printf "%s-%s" $year $month -}}
+        {{- $yearMonthsSlice = $yearMonthsSlice | append $yearMonth -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- /* Get unique year-month combinations and sort them */ -}}
+{{- $yearMonthsUnique := slice -}}
+{{- range $yearMonthsSlice -}}
+  {{- if not (in $yearMonthsUnique .) -}}
+    {{- $yearMonthsUnique = $yearMonthsUnique | append . -}}
+  {{- end -}}
+{{- end -}}
+{{- $yearMonthsUnique = sort $yearMonthsUnique -}}
+
+{{- /* Group by year */ -}}
+{{- $years := dict -}}
+{{- range $yearMonthsUnique -}}
+  {{- $year := substr . 0 4 -}}
+  {{- $month := substr . 5 2 -}}
+  {{- $monthsList := slice -}}
+  {{- if isset $years $year -}}
+    {{- $monthsList = index $years $year -}}
+  {{- end -}}
+  {{- $monthsList = $monthsList | append $month -}}
+  {{- $years = merge $years (dict $year $monthsList) -}}
+{{- end -}}
+
+{{- /* Create year and month pages */ -}}
+{{- range $year, $months := $years -}}
   {{- $yearTitle := printf "Posts from %s" $year -}}
   {{- $yearContent := dict "mediaType" "text/markdown" "value" "" -}}
   {{- $yearPage := dict
@@ -12,7 +58,7 @@
   -}}
   {{- $.AddPage $yearPage -}}
   
-  {{- range .months -}}
+  {{- range $months -}}
     {{- $month := . -}}
     {{- $monthName := index $monthNames $month -}}
     {{- $monthTitle := printf "%s %s" $monthName $year -}}
