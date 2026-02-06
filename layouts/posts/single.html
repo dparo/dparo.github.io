@@ -25,7 +25,13 @@
   {{- if isset .Params "toc" -}}
     {{- $showToc = .Params.toc -}}
   {{- end -}}
-  {{- if and $showToc .TableOfContents -}}
+  {{- /* Count headings by counting <a> tags in TableOfContents (each heading = 1 link) */ -}}
+  {{- $headingCount := 0 -}}
+  {{- with .TableOfContents -}}
+    {{- $headingCount = len (findRE "<a href" .) -}}
+  {{- end -}}
+  {{- /* Only show TOC if enabled, has content, and has more than 3 headings */ -}}
+  {{- if and $showToc .TableOfContents (gt $headingCount 3) -}}
   <div class="toc-container">
     <h2 class="toc-heading"><i class="fa-solid fa-list"></i> Table of Contents</h2>
     <nav class="toc" id="toc">
