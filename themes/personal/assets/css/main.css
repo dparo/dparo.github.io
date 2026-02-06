@@ -521,6 +521,137 @@ section p {
   font-style: italic;
 }
 
+/* ─── Table of Contents ──────────────────────────────────────── */
+.toc-container {
+  background-color: var(--mantle);
+  border: 1px solid var(--surface1);
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  margin: 2rem 0;
+  position: relative;
+  overflow: hidden; /* Prevent horizontal overflow */
+}
+
+.toc-heading {
+  margin: 0 0 1rem;
+  font-size: 1.1rem;
+  color: var(--pink);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.toc-heading i {
+  color: var(--lavender);
+  font-size: 1rem;
+}
+
+.toc nav {
+  font-size: 0.9rem;
+  line-height: 1.8;
+  max-width: 100%;
+  overflow-wrap: break-word; /* Break long words if necessary */
+  word-wrap: break-word; /* Legacy support */
+}
+
+/* Remove default list styling and add custom spacing */
+.toc nav > ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column; /* Force vertical stacking */
+}
+
+.toc nav ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column; /* Force vertical stacking for all lists */
+}
+
+.toc nav li {
+  margin: 0.35rem 0;
+  padding-left: 0;
+  max-width: 100%;
+  overflow: hidden; /* Prevent individual items from overflowing */
+  display: block; /* Ensure list items are block-level */
+}
+
+/* Nested items (H3 and deeper) */
+.toc nav ul ul {
+  margin-top: 0.35rem;
+  margin-bottom: 0.35rem;
+  padding-left: 1.25rem;
+  border-left: 2px solid var(--surface1);
+  margin-left: 0.5rem;
+}
+
+/* Links in TOC */
+.toc nav a {
+  color: var(--subtext1);
+  text-decoration: none;
+  transition: color 0.2s, padding-left 0.2s;
+  display: block; /* Changed from inline-block to block for better wrapping */
+  position: relative;
+  padding-left: 1rem;
+  padding-right: 0.5rem; /* Add right padding for breathing room */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto; /* Enable hyphenation for long words */
+  max-width: 100%;
+}
+
+/* Bullet point indicator */
+.toc nav a::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--overlay0);
+  transition: color 0.2s, transform 0.2s;
+  flex-shrink: 0; /* Prevent bullet from shrinking */
+}
+
+/* Hover state */
+.toc nav a:hover {
+  color: var(--lavender);
+  padding-left: 1.25rem;
+}
+
+.toc nav a:hover::before {
+  color: var(--lavender);
+  transform: translateX(0.15rem);
+}
+
+/* Nested links (H3+) - use smaller bullet */
+.toc nav ul ul a::before {
+  content: '·';
+  font-size: 1.5rem;
+  line-height: 0.5;
+  top: 0.1rem;
+}
+
+/* Responsive TOC on smaller screens */
+@media (max-width: 768px) {
+  .toc-container {
+    padding: 1rem 1.25rem;
+  }
+  
+  .toc nav {
+    font-size: 0.85rem;
+  }
+  
+  /* Reduce nesting indentation on mobile */
+  .toc nav ul ul {
+    padding-left: 1rem;
+    margin-left: 0.25rem;
+  }
+}
+
 /* ─── Giscus comments wrapper ────────────────────────────────── */
 .giscus-wrapper {
   margin-top: 3rem;
