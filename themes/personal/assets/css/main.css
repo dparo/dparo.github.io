@@ -420,11 +420,15 @@ section {
   border-radius: 8px;
   padding: 1.25rem 1.5rem;
   margin-bottom: 1rem;
-  transition: border-color 0.2s;
+  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  position: relative;
+  cursor: pointer;
 }
 
 section:hover {
   border-color: var(--surface1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(180, 190, 254, 0.1);
 }
 
 section h2 {
@@ -435,7 +439,18 @@ section h2 a {
   color: var(--pink);
 }
 
-section h2 a:hover {
+/* Make entire card clickable by stretching the link */
+section h2 a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+section:hover h2 a {
   color: var(--peach);
 }
 
