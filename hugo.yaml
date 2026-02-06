@@ -45,6 +45,10 @@ markup:
     lineNos: true
     lineNumbersInTable: true
     lineNoStart: 1
+  tableOfContents:
+    endLevel: 3
+    ordered: false
+    startLevel: 2
 
 related:
   includeNewer: true
