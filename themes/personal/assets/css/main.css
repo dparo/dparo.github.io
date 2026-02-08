@@ -1009,6 +1009,279 @@ footer {
   margin: 0.5rem 0 1rem;
 }
 
+/* ─── Timeline ───────────────────────────────────────────────── */
+.timeline-heading {
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--pink);
+  font-size: 1.5rem;
+}
+
+.timeline-heading i {
+  color: var(--lavender);
+  font-size: 1.3rem;
+}
+
+.timeline {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+/* Central vertical line */
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--surface1) 5%,
+    var(--surface1) 95%,
+    transparent
+  );
+  transform: translateX(-50%);
+}
+
+.timeline-item {
+  position: relative;
+  width: 50%;
+  padding: 0 2.5rem;
+  margin-bottom: 3rem;
+  opacity: 1;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Alternating left/right positioning */
+.timeline-item:nth-child(odd) {
+  left: 0;
+  padding-right: 2.5rem;
+  padding-left: 0;
+}
+
+.timeline-item:nth-child(even) {
+  left: 50%;
+  padding-left: 2.5rem;
+  padding-right: 0;
+}
+
+/* Timeline marker (dot on the center line) */
+.timeline-marker {
+  position: absolute;
+  top: 0;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--mantle);
+  border: 3px solid var(--surface1);
+  color: var(--subtext1);
+  font-size: 1.1rem;
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+/* Position marker on the center line */
+.timeline-item:nth-child(odd) .timeline-marker {
+  right: -1.5rem;
+}
+
+.timeline-item:nth-child(even) .timeline-marker {
+  left: -1.5rem;
+}
+
+/* Timeline content card */
+.timeline-content {
+  background-color: var(--mantle);
+  border: 1px solid var(--surface0);
+  border-radius: 12px;
+  padding: 1.5rem;
+  position: relative;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+/* Arrow pointing to center line */
+.timeline-content::before {
+  content: '';
+  position: absolute;
+  top: 0.75rem;
+  width: 0;
+  height: 0;
+  border: 12px solid transparent;
+  transition: border-color 0.3s ease;
+}
+
+.timeline-item:nth-child(odd) .timeline-content::before {
+  right: -24px;
+  border-left-color: var(--surface0);
+}
+
+.timeline-item:nth-child(even) .timeline-content::before {
+  left: -24px;
+  border-right-color: var(--surface0);
+}
+
+/* Hover effects */
+.timeline-item:hover {
+  transform: scale(1.02);
+}
+
+.timeline-item:hover .timeline-content {
+  border-color: var(--surface1);
+  box-shadow: 0 8px 24px rgba(137, 180, 250, 0.15);
+  background-color: var(--base);
+}
+
+.timeline-item:hover .timeline-marker {
+  border-color: var(--blue);
+  background-color: var(--surface0);
+  color: var(--blue);
+  transform: scale(1.15);
+  box-shadow: 0 0 20px rgba(137, 180, 250, 0.3);
+}
+
+/* Work type - use peach accent */
+.timeline-item.work:hover .timeline-marker {
+  border-color: var(--peach);
+  color: var(--peach);
+  box-shadow: 0 0 20px rgba(250, 179, 135, 0.3);
+}
+
+/* Education type - use lavender accent */
+.timeline-item.education:hover .timeline-marker {
+  border-color: var(--lavender);
+  color: var(--lavender);
+  box-shadow: 0 0 20px rgba(180, 190, 254, 0.3);
+}
+
+/* Update arrow on hover */
+.timeline-item:nth-child(odd):hover .timeline-content::before {
+  border-left-color: var(--surface1);
+}
+
+.timeline-item:nth-child(even):hover .timeline-content::before {
+  border-right-color: var(--surface1);
+}
+
+/* Timeline year badge */
+.timeline-year {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--surface0), var(--surface1));
+  color: var(--blue);
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.05em;
+  transition: all 0.3s ease;
+}
+
+.timeline-item:hover .timeline-year {
+  background: linear-gradient(135deg, var(--surface1), var(--blue));
+  color: var(--crust);
+  transform: translateY(-2px);
+}
+
+/* Timeline title */
+.timeline-title {
+  margin: 0 0 0.5rem;
+  font-size: 1.25rem;
+  color: var(--pink);
+  transition: color 0.3s ease;
+}
+
+.timeline-item:hover .timeline-title {
+  color: var(--peach);
+}
+
+/* Organization name */
+.timeline-org {
+  font-size: 0.95rem;
+  color: var(--lavender);
+  margin-bottom: 0.75rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.timeline-item:hover .timeline-org {
+  color: var(--blue);
+}
+
+/* Description */
+.timeline-desc {
+  margin: 0;
+  color: var(--subtext1);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  transition: color 0.3s ease;
+}
+
+.timeline-item:hover .timeline-desc {
+  color: var(--text);
+}
+
+/* ─── Responsive timeline ────────────────────────────────────── */
+@media (max-width: 768px) {
+  /* Remove center line on mobile */
+  .timeline::before {
+    left: 1.5rem;
+  }
+
+  /* Stack all items on left side */
+  .timeline-item,
+  .timeline-item:nth-child(odd),
+  .timeline-item:nth-child(even) {
+    width: 100%;
+    left: 0;
+    padding-left: 4rem;
+    padding-right: 0;
+  }
+
+  /* Position all markers on the left */
+  .timeline-marker,
+  .timeline-item:nth-child(odd) .timeline-marker,
+  .timeline-item:nth-child(even) .timeline-marker {
+    left: 0;
+    right: auto;
+  }
+
+  /* Adjust arrows for left-aligned layout */
+  .timeline-content::before,
+  .timeline-item:nth-child(odd) .timeline-content::before,
+  .timeline-item:nth-child(even) .timeline-content::before {
+    left: -24px;
+    right: auto;
+    border-left-color: transparent;
+    border-right-color: var(--surface0);
+  }
+
+  .timeline-item:hover .timeline-content::before,
+  .timeline-item:nth-child(odd):hover .timeline-content::before,
+  .timeline-item:nth-child(even):hover .timeline-content::before {
+    border-left-color: transparent;
+    border-right-color: var(--surface1);
+  }
+
+  .timeline-heading {
+    font-size: 1.3rem;
+  }
+
+  .timeline-title {
+    font-size: 1.1rem;
+  }
+}
+
 /* ─── Responsive ─────────────────────────────────────────────── */
 
 /* Hide sidebar completely on mobile devices */

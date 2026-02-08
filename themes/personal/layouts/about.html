@@ -2,5 +2,27 @@
   <article class="about-page">
     <h1>{{ .Title }}</h1>
     {{ .Content }}
+
+    {{ if .Params.timeline }}
+    <h2 class="timeline-heading">
+      <i class="fa-solid fa-clock-rotate-left"></i>
+      Timeline
+    </h2>
+    <div class="timeline">
+      {{ range .Params.timeline }}
+      <div class="timeline-item {{ .type }}">
+        <div class="timeline-marker">
+          <i class="fa-solid {{ .icon }}"></i>
+        </div>
+        <div class="timeline-content">
+          <div class="timeline-year">{{ .year }}</div>
+          <h3 class="timeline-title">{{ .title }}</h3>
+          <div class="timeline-org">{{ .organization }}</div>
+          <p class="timeline-desc">{{ .description }}</p>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+    {{ end }}
   </article>
 {{ end }}
