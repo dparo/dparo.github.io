@@ -25,7 +25,7 @@
     </div>
     {{ end }}
 
-    {{ if .Params.certifications }}
+    {{ if gt (len .Params.certifications) 0 }}
     <h2 class="certifications-heading">
       <i class="fa-solid fa-certificate"></i>
       Certifications
