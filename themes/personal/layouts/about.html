@@ -24,5 +24,38 @@
       {{ end }}
     </div>
     {{ end }}
+
+    {{ if .Params.certifications }}
+    <h2 class="certifications-heading">
+      <i class="fa-solid fa-certificate"></i>
+      Certifications
+    </h2>
+    <div class="certifications-grid">
+      {{ range .Params.certifications }}
+      <div class="cert-card">
+        <div class="cert-icon">
+          {{ if .icon_brand }}
+          <i class="fa-brands {{ .icon }}"></i>
+          {{ else }}
+          <i class="fa-solid {{ .icon }}"></i>
+          {{ end }}
+        </div>
+        <div class="cert-content">
+          <h3 class="cert-name">{{ .name }}</h3>
+          <div class="cert-issuer">{{ .issuer }}</div>
+          <div class="cert-footer">
+            <span class="cert-date">{{ .date }}</span>
+            {{ if .credential_url }}
+            <a href="{{ .credential_url }}" target="_blank" rel="noopener noreferrer" class="cert-link">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              Verify
+            </a>
+            {{ end }}
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+    {{ end }}
   </article>
 {{ end }}

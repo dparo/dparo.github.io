@@ -35,6 +35,30 @@ title = "Bachelor of Science"
 organization = "University Name"
 description = "Computer Science degree with honors"
 icon = "fa-graduation-cap"
+
+[[certifications]]
+name = "AWS Certified Solutions Architect"
+issuer = "Amazon Web Services"
+date = "2024"
+credential_url = "https://aws.amazon.com/certification/"
+icon = "fa-aws"
+icon_brand = true
+
+[[certifications]]
+name = "Certified Kubernetes Administrator"
+issuer = "Cloud Native Computing Foundation"
+date = "2023"
+credential_url = "https://www.cncf.io/certification/cka/"
+icon = "fa-docker"
+icon_brand = true
+
+[[certifications]]
+name = "Google Cloud Professional"
+issuer = "Google Cloud"
+date = "2023"
+credential_url = "https://cloud.google.com/certification"
+icon = "fa-google"
+icon_brand = true
 +++
 
 Hi, I'm **dparo** — a software engineer and occasional blogger.
