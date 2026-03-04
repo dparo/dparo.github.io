@@ -1,5 +1,24 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+  // ── Sticky navbar: progressive blur on scroll ─────────────────
+  const header = document.querySelector('header');
+  if (header) {
+    const MAX_SCROLL = 120;   // px of scroll at which blur reaches maximum
+    const MAX_BLUR   = 12;    // px of blur at maximum scroll
+
+    const updateHeaderBlur = () => {
+      const scrollY   = window.scrollY;
+      const progress  = Math.min(scrollY / MAX_SCROLL, 1);
+      const blurValue = (progress * MAX_BLUR).toFixed(2);
+      header.style.setProperty('--header-blur', blurValue + 'px');
+      header.classList.toggle('scrolled', scrollY > 0);
+    };
+
+    window.addEventListener('scroll', updateHeaderBlur, { passive: true });
+    updateHeaderBlur(); // apply immediately on load
+  }
+
+
   // ── Copy buttons for code blocks ──────────────────────────────
   document.querySelectorAll('.highlight').forEach((block) => {
     const btn = document.createElement('button');
